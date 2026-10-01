@@ -251,6 +251,8 @@ tcpecho_raw_accept(void *arg, struct tcp_pcb *newpcb, err_t err)
   err_t ret_err;
   struct tcpecho_raw_state *es;
 
+  newpcb->flags |= TF_NODELAY;
+
   LWIP_UNUSED_ARG(arg);
   if ((err != ERR_OK) || (newpcb == NULL)) {
     return ERR_VAL;
