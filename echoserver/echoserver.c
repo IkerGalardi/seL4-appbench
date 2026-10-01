@@ -84,7 +84,7 @@ void init()
                    NULL, netif_status_callback, NULL, NULL, NULL);
     set_timeout();
 
-    tcpecho_raw_init(1237);
+    tcpecho_raw_init(80);
 
     sddf_lwip_maybe_notify();
 
