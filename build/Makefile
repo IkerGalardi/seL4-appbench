@@ -28,7 +28,7 @@ CFLAGS=-nostdlib -ffreestanding -g -Wall -Wextra -mstrict-align \
        -I$(MICROKIT_BOARD_DIR)/include -DBOARD_$(MICROKIT_BOARD) \
        $(SDDF_INCLUDE) -Ivendor/sddf/network/ipstacks/lwip/src/include\
        -Wno-unused-function -Wno-unused-parameter -Ibuild/lwip/include \
-       -Wno-sign-compare -Wno-implicit-function-declaration
+       -Wno-sign-compare -Wno-implicit-function-declaration -O2
 LDFLAGS=-L$(MICROKIT_BOARD_DIR)/lib -L.
 
 LIBS=--start-group -lmicrokit -Tmicrokit.ld -lsddf_util_debug --end-group
