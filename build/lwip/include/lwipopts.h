@@ -114,17 +114,19 @@
  */
 #define TCP_MSS 1460
 
+#define TCP_MSL 100
+
 /**
  * The size of a TCP window - Maximum data we can receive at once. This
  * must be at least (2 * TCP_MSS) for things to work well.
  */
-#define TCP_WND 1000000
+#define TCP_WND (16 * TCP_MSS)
 
 /**
  * TCP sender buffer space (bytes). To achieve good performance, this
  * should be at least 2 * TCP_MSS.
  */
-#define TCP_SND_BUF TCP_WND
+#define TCP_SND_BUF (16 * TCP_WND)
 
 /**
  * TCP writable space (bytes). This must be less than TCP_SND_BUF. It is
@@ -165,7 +167,9 @@
 /**
  * The number of buffers in the pbuf pool.
  */
-#define PBUF_POOL_SIZE 1000
+#define PBUF_POOL_SIZE 34464
+
+#define TCP_SND_QUEUELEN ((4 * (TCP_SND_BUF) + (TCP_MSS - 1)) / (TCP_MSS))
 
 /**
  * The number of memp struct pbufs (used for PBUF_ROM and PBUF_REF).
@@ -206,7 +210,7 @@
 #define LWIP_DEBUG // we always want this on
 #define LWIP_DBG_MIN_LEVEL LWIP_DBG_LEVEL_WARNING // set this to 0 to see debug warnings
 
-#define MEMP_DEBUG LWIP_DBG_ON
+#define MEMP_DEBUG LWIP_DBG_OFF
 #define IP_DEBUG LWIP_DBG_ON
 #define TCP_OUTPUT_DEBUG LWIP_DBG_ON
 #define TCP_INPUT_DEBUG LWIP_DBG_ON
@@ -216,4 +220,4 @@
  * while after closing.  Increase the max number of concurrent streams to allow
  * for a few of these while the next benchmark runs.
  */
-#define MEMP_NUM_TCP_PCB 10
+#define MEMP_NUM_TCP_PCB 512
