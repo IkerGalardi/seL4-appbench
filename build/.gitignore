@@ -15,8 +15,19 @@ network/virtio/mmio/*.o
 network/components/*.o
 .network_cflags-*
 
+echoserver/*.o
+webserver/*.o
+
 lib_sddf_lwip_out
 lib_sddf_lwip.a
 
 webserver.img
 webserver.txt
+echoserver.img
+echoserver.txt
+
+webserver.elf
+echoserver.elf
+
+devicetree.dts
+system.system
