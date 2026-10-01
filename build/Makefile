@@ -123,7 +123,11 @@ QEMU_FLAGS+=-nographic
 QEMU_FLAGS+=-serial mon:stdio
 QEMU_FLAGS+=-m size=2G
 QEMU_FLAGS+=-smp $(CONFIG_NUM_CORES)
+ifeq ($(CONFIG_USE_TAP_NETWORK), true)
+QEMU_FLAGS+=-netdev tap,id=mynet0,ifname=tap0,script=no,downscript=no
+else
 QEMU_FLAGS+=-netdev user,id=mynet0,hostfwd=tcp::80-:80
+endif
 QEMU_FLAGS+=-device virtio-net-device,netdev=mynet0,mac=52:55:00:d1:55:01
 QEMU_FLAGS+=-global virtio-mmio.force-legacy=false
 QEMU_FLAGS+=-accel kvm
